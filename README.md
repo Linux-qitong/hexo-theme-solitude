@@ -19,8 +19,6 @@
 
 <div style="width: 80%; margin: 0 auto">
 
-![Screenshot](.github/screenshot.avif)
-
 </div>
 
 ## 应用
@@ -38,7 +36,7 @@
 前往 [文档](https://solitude.js.org/) 获取更多信息。
 
 ## 群组
-[![志海融新 QQ 群](https://img.shields.io/badge/QQ%20%E7%BE%A4-985191565-FFD700?logo=Tencent-QQ&logoColor=white&style=for-the-badge)]()
+[![志海融新 QQ 群](https://img.shields.io/badge/QQ%20%E7%BE%A4-985191565-FFD700?logo=Tencent-QQ&logoColor=white&style=for-the-badge)](https://qm.qq.com/q/ZioXvjR5UO)
 [![Solitude QQ 群](https://img.shields.io/badge/QQ%20群-948375336-FFD700?logo=Tencent-QQ&logoColor=white&style=for-the-badge)](https://qm.qq.com/q/mxfomMvJPG)
 
 ## Solidute主题版权
