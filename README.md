@@ -72,4 +72,5 @@
 ## Solidute主题版权
 
 [MIT](./LICENSE) License &copy; 2023-至今 [伍十七](https://github.com/everfu)
+
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvalor-x%2Fhexo-theme-solitude.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvalor-x%2Fhexo-theme-solitude?ref=badge_large)
