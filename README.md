@@ -9,6 +9,7 @@
    一款优雅的 Hexo 主题，支持懒加载、PWA、Latex 以及多种评论系统。
 
    主题设计由 [@张洪Heo](https://github.com/zhheo) 全权授权
+   部分代码参考或来自 [@HPCesia](https://github.com/HPCesia) 感谢HPCesia
 
 [文档](https://solitude.js.org/)丨[预览](https://blog.linux-qitong.top/)
 
