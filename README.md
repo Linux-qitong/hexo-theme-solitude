@@ -39,12 +39,6 @@
 [![志海融新 QQ 群](https://img.shields.io/badge/QQ%20%E7%BE%A4-985191565-FFD700?logo=Tencent-QQ&logoColor=white&style=for-the-badge)](https://qm.qq.com/q/ZioXvjR5UO)
 [![Solitude QQ 群](https://img.shields.io/badge/QQ%20群-948375336-FFD700?logo=Tencent-QQ&logoColor=white&style=for-the-badge)](https://qm.qq.com/q/mxfomMvJPG)
 
-## Solidute主题版权
-
-[MIT](./LICENSE) License &copy; 2023-至今 [伍十七](https://github.com/everfu)
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvalor-x%2Fhexo-theme-solitude.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvalor-x%2Fhexo-theme-solitude?ref=badge_large)
-
 ## [了解志海融新](https://github.com/Zen-Harmony)
 
 ### 加入规则
@@ -75,3 +69,7 @@
 + 志海融新团队是一个大家庭，我们期待每一位成员的加入和贡献。只要大家遵守法律法规和团队规则，积极参与团队活动，互帮互助，我们一定能够共同创造出一个更加美好的未来！
 + 请注意，以上规则仅为团队加入的基本准则，具体细节可能会根据团队发展的需要进行调整和完善。请大家保持关注，并随时提出宝贵的意见和建议。
 
+## Solidute主题版权
+
+[MIT](./LICENSE) License &copy; 2023-至今 [伍十七](https://github.com/everfu)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvalor-x%2Fhexo-theme-solitude.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvalor-x%2Fhexo-theme-solitude?ref=badge_large)
