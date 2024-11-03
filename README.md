@@ -10,7 +10,7 @@
 
    主题设计由 [@张洪Heo](https://github.com/zhheo) 全权授权
    
-   部分代码参考或来自 [@HPCesia](https://github.com/HPCesia) 感谢HPCesia
+   部分代码参考或来自 [@HPCesia](https://github.com/HPCesia) 感谢
 
 [文档](https://solitude.js.org/)丨[预览](https://blog.linux-qitong.top/)
 
