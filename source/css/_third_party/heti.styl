@@ -1,0 +1,33 @@
+// Based on https://github.com/sivan/heti/blob/master/lib/helpers/_add-on.scss
+.heti
+  heti-spacing
+    display inline
+
+  .heti-spacing-start
+    margin-inline-end 0.25em
+
+  .heti-spacing-end
+    margin-inline-start 0.25em
+
+  if (hexo-config('cjk_latin_layout_enhance.use_halt'))
+    @supports not (text-spacing-trim normal)
+      heti-adjacent
+        display inline
+
+      .heti-adjacent-half
+        margin-inline-end -0.5em
+
+      .heti-adjacent-quarter
+        margin-inline-end -0.25em
+
+    @supports (text-spacing-trim normal)
+      text-spacing-trim normal
+  else
+    heti-adjacent
+      display inline
+
+    .heti-adjacent-half
+      margin-inline-end -0.5em
+
+    .heti-adjacent-quarter
+      margin-inline-end -0.25em
