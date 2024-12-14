@@ -3,7 +3,7 @@
 
 <div align="center">
 
-<img width="70%" src="img/screenshot.avif" />
+<img width="70%" src="/img/screenshot.avif" />
 
 一款优雅的 Hexo 主题，支持懒加载、PWA、Latex 以及多种评论系统。
 
