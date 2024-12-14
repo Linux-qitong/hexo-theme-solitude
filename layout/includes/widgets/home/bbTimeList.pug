@@ -1,0 +1,29 @@
+.bbTimeList.container#bbTimeList(class=is_home_first_page() ? '' : 'more-page')
+    i.bber-logo.solitude.fa-solid.fa-newspaper(onclick=`pjax.loadUrl('${url_for(theme.says.page)}')`)
+    .swiper-container.swiper-no-swiping.swiper-container-initialized.swiper-container-vertical.swiper-container-pointer-events#bbtalk(tabindex="-1" onclick=`pjax.loadUrl('${url_for(theme.says.page)}')`)
+        .swiper-wrapper#bber-talk
+            if theme.says.mode === 'local'
+                each item, i in site.data.essay.essay_list.slice(0, 10)
+                    .li-style.swiper-slide
+                        | #{item.content}
+                        if item.image
+                            i.solitude.fa-solid.fa-image
+                        else if item.aplayer
+                            i.solitude.fa-solid.fa-disc
+                        else if item.video || item.bilibili
+                            i.solitude.fa-solid.fa-video
+                        else if item.link
+                            i.solitude.fa-solid.fa-link
+            else
+                .li-style.bber-loading(style="text-align: center") Loading...
+                script.
+                    (async function () {
+                        const response = await fetch("!{url_for(theme.says.api)}");
+                        const data = await response.json();
+                        const list = data.memos.slice(0, 10).map((item) => {
+                            let type = item.image ? "【图片】" : item.aplayer ? "【音乐】" : item.video ? "【视频】" : "";
+                            return `<div class="li-style swiper-slide">${item.content + type}</div>`;
+                        });
+                        document.querySelector("#bber-talk").innerHTML = list.join(" ");
+                    })();
+    i.bber-gotobb.solitude.fa-solid.fa-circle-chevron-right(title=_p('home.bbtime.text') onclick=`pjax.loadUrl('${url_for(theme.says.page)}')`)
