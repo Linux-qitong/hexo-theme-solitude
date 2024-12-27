@@ -15,7 +15,7 @@ const galleryBox = args => {
   <a href='${urlLink}'></a>
   </figcaption>
   </figure>
-  `
+  `.replace(/>(\s+)</g, '><')
 }
 
 const gallery = (args, content) => {
@@ -30,7 +30,7 @@ const gallery = (args, content) => {
     }
     return `<div class="gallery-container waterfall">
         ${html}
-      </div>`
+      </div>`.replace(/>(\s+)</g, '><')
 }
 
 hexo.extend.tag.register('gallery', gallery, {ends: true})

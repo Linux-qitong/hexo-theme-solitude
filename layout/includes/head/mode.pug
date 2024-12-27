@@ -1,7 +1,7 @@
 case theme.display_mode.type
     when "auto"
         script.
-            initTheme = () => {
+            const initTheme = () => {
                 let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
                 const cachedMode = utils.saveToLocal.get('theme');
                 if (cachedMode === undefined) {
@@ -13,10 +13,10 @@ case theme.display_mode.type
                 }
                 typeof rm === 'object' && rm.mode(cachedMode === 'dark' && isDarkMode)
             }
-            initTheme()
+            initTheme();
     when "dark"
         script.
-            initTheme = () => {
+            const initTheme = () => {
                 const cachedMode = utils.saveToLocal.get('theme');
                 if (cachedMode === undefined)
                     document.documentElement.setAttribute('data-theme', 'dark');
@@ -24,10 +24,10 @@ case theme.display_mode.type
                     document.documentElement.setAttribute('data-theme', cachedMode);
                 typeof rm === 'object' && rm.mode(cachedMode === undefined || cachedMode === 'dark')
             }
-            initTheme()
+            initTheme();
     when "light"
         script.
-            initTheme = () => {
+            const initTheme = () => {
                 const cachedMode = utils.saveToLocal.get('theme');
                 if (cachedMode === undefined)
                     document.documentElement.setAttribute('data-theme', 'light');
@@ -35,4 +35,4 @@ case theme.display_mode.type
                     document.documentElement.setAttribute('data-theme', cachedMode);
                 typeof rm === 'object' && rm.mode(cachedMode === 'dark')
             }
-            initTheme()
+            initTheme();

@@ -91,6 +91,11 @@ div
   if theme.right_menu.enable
     script(src=url_for(theme.cdn.right_menu_js))
 
+  if theme.cjk_latin_layout_enhance.enable
+    script(src=url_for(theme.cdn.heti))
+    script.
+      const heti = new Heti('.heti');
+
   if theme.extends.body
     each item in theme.extends.body
       != item
@@ -113,9 +118,12 @@ div
         carousel_swiper()
     if theme.busuanzi && (theme.aside.siteinfo.uv || theme.aside.siteinfo.pv || is_post() && theme.post.meta.pv)
       script(defer pjax src=url_for(theme.cdn.busuanzi_js))
+    if theme.cjk_latin_layout_enhance.enable
+      script(defer pjax).
+        heti.autoSpacing();
 
 
-if theme.footer.randomlink
+if theme.footer.randomlink.enable
   include ../widgets/randomlink.pug
 
 // pjax

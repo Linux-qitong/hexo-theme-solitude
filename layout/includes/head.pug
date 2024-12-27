@@ -12,8 +12,13 @@
 - else subtitle = title ? ' | ' + config.title : config.title
 
 meta(charset="utf-8")
-meta(http-equiv="X-UA-Compatible", content="IE=edge")
+meta(http-equiv="X-UA-Compatible" content="IE=edge")
 meta(name="viewport" content="width=device-width, initial-scale=1")
+
+- let keywords = page.keywords || config.keywords || page.tags
+- if (keywords instanceof Array) keywords = keywords.join(',')
+if keywords
+    meta(name="keywords", content=keywords)
 
 title= title + subtitle
 noscript= _p('head.noscript')

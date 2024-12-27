@@ -276,18 +276,21 @@ const sco = {
     }
   },
   toTalk(txt) {
-    const inputs = ["#wl-edit", ".el-textarea__inner", "#veditor", ".atk-textarea"];
-    inputs.forEach(selector => {
-      const el = document.querySelector(selector);
-      if (el) {
-        el.dispatchEvent(new Event('input', { bubble: true, cancelable: true }));
-        el.value = '> ' + txt.replace(/\n/g, '\n> ') + '\n\n';
-        utils.scrollToDest(utils.getEleTop(document.getElementById('post-comment')), 300);
-        el.focus();
-        el.setSelectionRange(-1, -1);
-      }
-    });
-    utils.snackbarShow(GLOBAL_CONFIG.lang.totalk, false, 2000);
+    utils.scrollToDest(utils.getEleTop(document.getElementById('post-comment')), 300);
+    const toTalkFn = () => {
+      const inputs = ["#wl-edit", ".el-textarea__inner", "#veditor", ".atk-textarea"];
+      inputs.forEach(selector => {
+        const el = document.querySelector(selector);
+        if (el) {
+          el.value = '> ' + txt.replace(/\n/g, '\n> ') + '\n\n';
+          el.focus();
+          el.setSelectionRange(-1, -1);
+          el.dispatchEvent(new Event('input', { bubble: true, cancelable: true }));
+        }
+      });
+      utils.snackbarShow(GLOBAL_CONFIG.lang.totalk, false, 2000);
+    }
+    hpcesia.waitTwikoo(toTalkFn)
   },
   initbbtalk() {
     const bberTalkElement = document.querySelector('#bber-talk');
@@ -485,18 +488,51 @@ const sco = {
     utils.addEventListenerPjax(switchBtn, 'click', handleSwitchBtn);
   }
 };
-
+const hpcesia = {
+  applyLinkComment(type) {
+    const inputs = ["#wl-edit", ".el-textarea__inner", "#veditor", ".atk-textarea"];
+    utils.scrollToDest(utils.getEleTop(document.getElementById('post-comment')), 300);
+    setTimeout(() => {
+      inputs.forEach(selector => {
+        const el = document.querySelector(selector);
+        if (el) {
+          type === "common"
+            ? ((el.value = "站点名称：\n站点地址：\n头像链接：\n站点描述：\n站点截图："),
+              el.setSelectionRange(5, 5))
+            : ((el.value = "```yml\n- name: \n  link: \n  avatar: \n  descr: \n  siteshot: \n```"),
+              el.setSelectionRange(15, 15));
+          el.focus();
+          el.dispatchEvent(new Event('input', { bubble: true, cancelable: true }));
+        }
+      });
+    }, 500);
+  },
+  switchHideBgImg(){
+    const globalBg = document.getElementById('global_bg');
+    if (globalBg.style.backgroundImage === 'none') {
+      globalBg.style.backgroundImage = '';
+    } else {
+      globalBg.style.backgroundImage = 'none';
+    }
+  },
+  waitTwikoo(callback, scale = 100){
+    setTimeout(() => {
+      if (window.twikoo)
+        callback()
+      else
+        hpcesia.waitTwikoo(callback)
+    }, scale);
+  }
+}
 const addHighlight = () => {
   const highlight = GLOBAL_CONFIG.highlight;
   if (!highlight) return;
   const { copy, expand, limit, syntax } = highlight;
   const $isPrismjs = syntax === 'prismjs';
   const $isShowTool = highlight.enable || copy || expand || limit;
-  const expandClass = expand ? '' : 'closed';
-  const $syntaxHighlight = syntax === 'highlight.js' ? document.querySelectorAll('figure.highlight') : document.querySelectorAll('pre[class*="language-"]');
-  
-  if (!(($isShowTool || limit) && $syntaxHighlight.length)) return;
-
+  const expandClass = !expand === true ? 'closed' : ''
+  const $syntaxHighlight = syntax === 'highlight.js' ? document.querySelectorAll('figure.highlight') : document.querySelectorAll('pre[class*="language-"]') 
+  if (!(($isShowTool || limit) && $syntaxHighlight.length)) return
   const copyEle = copy ? `<i class="solitude fas fa-copy copy-button"></i>` : '<i></i>';
   const expandEle = `<i class="solitude fas fa-angle-down expand"></i>`;
   const limitEle = limit ? `<i class="solitude fas fa-angles-down"></i>` : '<i></i>';
@@ -641,6 +677,18 @@ class toc {
   }
 }
 
+class ref {
+  static init() {
+    const el = document.querySelectorAll('a.ref')
+    el.forEach((e) => {
+      e.addEventListener('click', (event) => {
+        event.preventDefault()
+        utils.scrollToDest(utils.getEleTop(document.getElementById(decodeURI(event.target.hash.replace('#', '')))), 300)
+      })
+    })
+  }
+}
+
 class tabs {
   static init() {
     this.clickFnOfTabs();
@@ -752,6 +800,7 @@ window.refreshFn = () => {
   if (is_post || is_page) {
     addHighlight();
     tabs.init();
+    ref.init();
   }
   if (is_post && expire) {
     tabs.expireAddListener();

@@ -158,7 +158,10 @@ hexo.extend.filter.register('before_generate', () => {
         right: null,
       },
       group: null,
-      randomlink: false,
+      randomlink: {
+        enable: false,
+        num: 3,
+      },
       privacy: null,
       license: null,
       links: [{
@@ -173,6 +176,8 @@ hexo.extend.filter.register('before_generate', () => {
     },
     says: {
       enable: false,
+      mode: "local",
+      api: null,
       home_mini: false,
       style: 1,
       strip: 30
@@ -241,6 +246,10 @@ hexo.extend.filter.register('before_generate', () => {
     },
     wordcount: false,
     busuanzi: false,
+    cjk_latin_layout_enhance: {
+      enable: false,
+      use_halt: false
+    },
     search: {
       enable: false,
       type: 'local',
@@ -391,7 +400,8 @@ hexo.extend.filter.register('before_generate', () => {
       hide: {
         enable: false,
         translate: false,
-        mode: false
+        mode: false,
+        background_image: false
       }
     },
     CDN: {

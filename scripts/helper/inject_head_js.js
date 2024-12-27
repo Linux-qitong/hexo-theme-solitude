@@ -88,7 +88,7 @@ hexo.extend.helper.register('inject_head_js', function () {
           },
         }
     `
-    return `<script>(()=>{${createJS()}})()</script>`
+    return `<script>(()=>{${createJS()}})();</script>`
 })
 
 hexo.extend.helper.register('packageVersion', function () {

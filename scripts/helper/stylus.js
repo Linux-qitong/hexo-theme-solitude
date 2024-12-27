@@ -5,6 +5,7 @@ hexo.extend.filter.register('stylus:renderer', function (style) {
     style.define('$about', data && data.about ? Object.keys(data.about) : false);
     style.define('$link', !!(data && data.links) || !!(data && data.tlink))
     style.define('$equipment', !!(data && data.equipment))
+    style.define('$games', !!(data && data.games))
 
     // highlight
     const {syntax_highlighter: syntaxHighlighter, highlight, prismjs} = hexo.config

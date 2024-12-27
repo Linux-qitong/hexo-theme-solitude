@@ -132,3 +132,7 @@ color_thief:
   file: dist/color-thief.min.js
   version: 2.6.0
   other_name: color-thief
+heti:
+  name: heti
+  file: umd/heti-addon.min.js
+  version: 0.9.4

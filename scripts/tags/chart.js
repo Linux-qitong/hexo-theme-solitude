@@ -21,7 +21,7 @@ const chart = (args, content) => {
       utils.addEventListenerPjax(document, "pjax:complete", chart);
     }()
     </script>
-  </div>`;
+  </div>`.replace(/>(\s+)</g, '><')
 }
 
 hexo.extend.tag.register('chart', chart, {ends: true})

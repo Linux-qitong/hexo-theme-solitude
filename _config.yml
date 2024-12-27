@@ -56,11 +56,16 @@ nav:
   right:
     random: false # Random article / 随机文章按钮
     custom:
-    #  - name: 开往 # 名字
-    #    url: https://www.travellings.cn/go.html # 跳转链接
-    #    icon: fas fa-train # 图标
-    #    onclick: # 点击事件
-    #    id: travellings_button # id
+      # - name: 订阅
+      #   url: /rss2.xml
+      #   icon: fas fa-rss
+      #   onclick:
+      #   id: rss_nav_button
+      # - name: 开往 # 名字
+      #   url: https://www.travellings.cn/go.html # 跳转链接
+      #   icon: fas fa-train # 图标
+      #   onclick: # 点击事件
+      #   id: travellings_button # id
 # --------------------------- end ---------------------------
 
 # --------------------------- start ---------------------------
@@ -542,6 +547,7 @@ rightside:
     translate: false
     mode: false
     aside: false
+    background_image: false
 # --------------------------- start ---------------------------
 
 # --------------------------- start ---------------------------
@@ -568,7 +574,9 @@ footer:
     #   Copyright: /copyright/
 
   # 随机友链
-  randomlink: false # 随机友链
+  randomlink:
+    enable: false
+    num: 3
   # 许可证
   license: # https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans # 许可证
 
@@ -580,6 +588,9 @@ footer:
     # - name: 湘ICP备2024080357号-1
     #   url: https://beian.miit.gov.cn/
 
+  image: # 页脚图片
+
+  # Footer information text
   # 页脚信息文字
   # 请不要删除主题信息，这是对作者的尊重
   links:
@@ -920,6 +931,8 @@ envelope:
 # 即可短文
 says:
   enable: false
+  mode: local # local | memos
+  api:
   home_mini: false
   page: /essay/
   style: 1
@@ -942,6 +955,14 @@ busuanzi: false
 # 0: Original / 1: Custom
 # 0: 原版 / 1: 自定义版
 busuanzi_use: 0
+# --------------------------- end ---------------------------
+
+# --------------------------- start ---------------------------
+# Enhance the mixed layout of CJK and Latin characters
+# CJK 与拉丁字符混排效果增强
+cjk_latin_layout_enhance:
+  enable: false
+  use_halt: false # ⚠️仅当字体支持 OpenType halt 特性时启用 / ⚠️Use only when the font supports the OpenType halt feature
 # --------------------------- end ---------------------------
 
 # --------------------------- start ---------------------------
@@ -1028,4 +1049,5 @@ CDN:
     # valine
     # waline_css
     # waline_js
+    # heti
 # --------------------------- end ---------------------------

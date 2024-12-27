@@ -11,34 +11,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function translateText(txt) {
         if (!txt) return '';
-        return currentEncoding === targetEncoding ? txt : (currentEncoding === 1 ? Simplized(txt) : Traditionalized(txt));
+        if (currentEncoding === 1 && targetEncoding === 2) return Simplized(txt);
+        if (currentEncoding === 2 && targetEncoding === 1) return Traditionalized(txt);
+        return txt;
     }
 
     function translateBody(fobj) {
-        const objs = fobj?.childNodes || document.body.childNodes;
+        const objs = fobj && typeof fobj === 'object' ? fobj.childNodes : document.body.childNodes;
 
         objs.forEach(obj => {
             if (['BR', 'HR'].includes(obj.tagName)) return;
-
+            
             if (obj.title) obj.title = translateText(obj.title);
             if (obj.alt) obj.alt = translateText(obj.alt);
             if (obj.placeholder) obj.placeholder = translateText(obj.placeholder);
             if (obj.tagName === 'INPUT' && obj.value && !['text', 'hidden'].includes(obj.type)) {
                 obj.value = translateText(obj.value);
             }
-            if (obj.nodeType === 3) {
-                obj.data = translateText(obj.data);
-            } else {
-                translateBody(obj);
-            }
+            if (obj.nodeType === 3) obj.data = translateText(obj.data);
+            else translateBody(obj);
         });
     }
 
-    function translatePage(simplified, traditional, button) {
+    function translatePage(simeple, traditional ,button) {
         currentEncoding = targetEncoding;
         targetEncoding = targetEncoding === 1 ? 2 : 1;
-        button.lastChild.textContent = targetEncoding === 1 ? simplified : traditional;
-
+        button.lastChild.textContent = targetEncoding === 1 ? simeple : traditional;
+        
         utils.snackbarShow(targetEncoding === 1 ? '你已切換為繁體' : '你已切换为简体');
         utils.saveToLocal.set(targetEncodingCookie, targetEncoding, 2);
         setLang();
@@ -59,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const tt = FTPYStr();
         return Array.from(cc).map(char => {
             const index = ss.indexOf(char);
-            return index !== -1 ? tt.charAt(index) : char;
+            return index > -1 ? tt.charAt(index) : char;
         }).join('');
     }
 
@@ -68,29 +67,29 @@ document.addEventListener('DOMContentLoaded', function () {
         const tt = FTPYStr();
         return Array.from(cc).map(char => {
             const index = tt.indexOf(char);
-            return index !== -1 ? ss.charAt(index) : char;
+            return index > -1 ? ss.charAt(index) : char;
         }).join('');
     }
 
     function translateInitialization() {
-        const btn_1 = document.getElementById('menu-translate');
+        let btn_1 = document.getElementById('menu-translate');
         if (btn_1) {
             btn_1.lastChild.textContent = targetEncoding === 1 ? '转为简体' : '转为繁体';
             if (currentEncoding !== targetEncoding) {
                 setLang();
                 setTimeout(translateBody, translateDelay);
             }
-            btn_1.addEventListener('click', () => translatePage('转为简体', '转为繁体', btn_1), false);
+            btn_1.addEventListener('click', () => {translatePage( '转为简体','转为繁体',btn_1)}, false);
         }
 
-        const btn_2 = document.querySelector('.rs_hide .translate');
+        let btn_2 = document.querySelector('.rs_hide .translate');
         if (btn_2) {
             btn_2.lastChild.textContent = targetEncoding === 1 ? '简' : '繁';
             if (currentEncoding !== targetEncoding) {
                 setLang();
                 setTimeout(translateBody, translateDelay);
             }
-            btn_2.addEventListener('click', () => translatePage('简', '繁', btn_2), false);
+            btn_2.addEventListener('click', () => {translatePage('简','繁',btn_2)}, false);
         }
     }
 

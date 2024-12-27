@@ -13,6 +13,14 @@
     border-radius 12px
     margin 0 0 1rem
 
+  figcaption
+    text-align center
+    font-size 12px
+    color var(--efu-secondtext)
+
+    &[aria-hidden]
+      display none
+
   a
     color var(--efu-fontcolor)
     border-radius 4px 4px 0 0
@@ -91,11 +99,11 @@
       font-size 15px
 
   code:not([class*='language-'])
-    color var(--efu-white)
+    color var(--efu-fontcolor)
     padding 0.2rem 0.4rem
     border-radius 4px
     margin 0 4px
-    background var(--efu-pink)
+    background var(--efu-theme-op)
     line-height 2
     box-shadow var(--efu-shadow-border)
 
@@ -180,7 +188,7 @@
                 counter-increment li
 
   &.post-content
-    h1, h2, h3, h4
+    h1, h2, h3, h4, h5
       padding-right 1rem
       position relative
       display flex
@@ -189,16 +197,24 @@
       transition all .2s ease-out 0s
 
     h1
-      font-size 1.5rem
+      font-size 1.7rem
       line-height 1.3
 
     h2
-      font-size 1.3rem
+      font-size 1.5rem
       line-height 1.3
       border-top 1px dashed var(--efu-theme-op)
       padding-top 1rem
 
-    h3, h4
+    h3
+      font-size 1.3rem
+      line-height 1.3
+
+    h4
+      font-size 1.1rem
+      line-height 1.3
+
+    h5
       font-size 1.1rem
       line-height 1.3
   hr

@@ -20,6 +20,8 @@ block content
                     include includes/page/equipment
                 when 'music'
                     include includes/page/music
+                when 'games'
+                    include includes/page/games
                 when 'message'
                     !=partial('includes/page/message', {}, {cache: true})
                 when 'recentcomment'

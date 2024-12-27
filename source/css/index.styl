@@ -3,16 +3,16 @@
 if hexo-config('css_prefix')
   @import 'nib'
 
-@import "third_party/snackbar.min.css"
+@import "_third_party/snackbar.min.css"
 // project
-@import "var.styl"
+@import "_var.styl"
 @import '_global/*'
 @import '_layout/*'
 @import '_page/index.styl'
 @import '_post/index.styl'
 @import '_mode/*'
 
-// highlight
+// highlight 
 @import '_highlight/index'
 
 // search
@@ -31,4 +31,7 @@ if hexo-config('comment.use')
 
 // third party
 if hexo-config('tianli_talk.enable')
-  @import 'third_party/tianli_talk.styl'
+  @import '_third_party/tianli_talk.styl'
+
+if hexo-config('cjk_latin_layout_enhance.enable')
+  @import '_third_party/heti.styl'

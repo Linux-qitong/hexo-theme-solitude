@@ -2,11 +2,9 @@
   .tk-submit
     margin-top 0
 
-  .tk-admin-config-group-title
-    margin-top 0
-    line-height normal
-
   .tk-row
+    position relative
+
     .tk-col
       flex-direction column-reverse !important
 
@@ -28,6 +26,11 @@
 .twikoo-info
   color var(--efu-secondtext)
 
+.tk-actions
+  display inline !important
+  transition opacity 0.2s ease-in-out 0.1s
+  opacity 0
+
 .tk-action
   .tk-action-link:first-child
     display none
@@ -37,7 +40,7 @@
   cursor pointer
   user-select none
   padding 0 12px
-  transition all .3s
+  transition all 0.3s
   border-radius 8px
   background-color var(--efu-secondbg)
   border var(--style-border-always)
@@ -51,7 +54,7 @@
 
 .tk-action-icon
   svg
-    transition all .3s
+    transition all 0.3s
     fill var(--efu-lighttext) !important
 
 .tk-content
@@ -69,13 +72,13 @@
     height 32px !important
     border-radius 32px !important
 
-.tk-row
-  .tk-avatar
-    display none
-
-.tk-avatar
   .tk-avatar-img:hover
     transform rotate(360deg)
+
+.tk-row
+  .tk-avatar
+    position absolute
+    bottom 11px
 
 .tk-nick
   font-size 1rem !important
@@ -95,7 +98,7 @@
 .tk-tag-green
   border-radius 4px !important
   border 0 solid #e1f3d8 !important
-  font-size .5rem !important
+  font-size 0.5rem !important
 
 [data-theme=dark]
   .tk-tag-green
@@ -104,7 +107,7 @@
 .tk-tag-yellow
   border-radius 4px !important
   border 0 solid #e1f3d8 !important
-  font-size .5rem !important
+  font-size 0.5rem !important
 
 [data-theme=dark]
   .tk-tag-green
@@ -113,7 +116,7 @@
 .tk-tag-red
   border-radius 4px !important
   border 0 solid #f3d8d8 !important
-  font-size .5rem !important
+  font-size 0.5rem !important
 
 [data-theme=dark]
   .tk-tag-red
@@ -122,37 +125,82 @@
 .tk-submit-action-icon.__markdown
   display none
 
+.tk-preview-container
+  margin-left 0 !important
+
+.tk-admin-container
+  .el-button--text
+    padding-left 2px !important
+    padding-right 2px !important
+
+  .tk-admin-config-group[open]
+    .tk-admin-config-group-title
+      background var(--efu-lighttext) !important
+
+  .tk-admin-config-group-title
+    margin-top 0
+    line-height normal
+    background var(--efu-card-bg) !important
+    color var(--efu-fontcolor) !important
+
+    &:hover
+      background var(--efu-lighttext) !important
+
 .tk-comments
   .el-button--primary
     border-color var(--efu-fontcolor) !important
     color var(--efu-card-bg) !important
     border-radius 12px !important
     box-shadow var(--efu-shadow-black)
-    transition .3s
-    width 5rem
+    transition 0.3s
+    width 2.25rem
     position absolute
     top -44px
     right 0
-    margin-left .5rem !important
+    margin-left 0.25rem !important
     height 34px
+    text-align center
+    padding 0px 0px !important
 
-  .el-button--primary.is-disabled,
-  .el-button--primary.is-disabled:active,
-  .el-button--primary.is-disabled:focus,
-  .el-button--primary.is-disabled:hover
-    opacity .2
+  .el-button--primary.is-disabled, .el-button--primary.is-disabled:active, .el-button--primary.is-disabled:focus, .el-button--primary.is-disabled:hover
+    opacity 0.2
+
+  .el-button--default
+    border-color var(--efu-fontcolor) !important
+    color var(--efu-card-bg) !important
+    border-radius 12px !important
+    box-shadow var(--efu-shadow-black)
+    transition 0.3s
+    width 2.25rem
+    position absolute
+    top -44px
+    margin-left 0.25rem !important
+    height 34px
+    text-align center
+    padding 0px 0px !important
+
+  .tk-preview
+    right 2.75rem
 
 .tk-row-actions-start
   position absolute
   top -84px
   left 17px
 
-@media screen and (max-width: 768px)
+@media screen and (max-width 768px)
   .tk-submit
     .el-button--primary
-      width 5rem
-      height 122px
-      top -132px
+      width 2.5rem
+      height 55px
+      top -66px
+
+    .el-button--default
+      width 2.5rem
+      height 55px
+      top -130px
+
+    .tk-preview
+      right 0
 
   .tk-row-actions-start
     top -170px
@@ -163,8 +211,8 @@
   left 0
 
 .tk-extras
-  margin-top .5rem
-  padding-bottom .5rem
+  margin-top 0.5rem
+  padding-bottom 0.5rem
 
 .tk-icon.__comments:first-child
   display none
@@ -181,15 +229,15 @@
 .tk-meta-input
   position relative !important
   margin-top 8px
-  width calc(100% - 5.5rem)
+  width calc(100% - 5.5rem - 40px)
+  left 40px
 
 .tk-content
   .tk-owo-emotion
     width 3em
     margin 0 2px
 
-.tk-owo-emotion,
-.twikoo
+.tk-owo-emotion, .twikoo
   .OwO-item
     img
       pointer-events none
@@ -203,9 +251,8 @@
   color var(--efu-secondtext) !important
   display inline !important
   margin-top 6px !important
-  font-size .5rem
+  font-size 0.5rem
 
-.tk-extra
   .tk-icon
     display none
 
@@ -223,20 +270,36 @@
 
 .tk-time
   color var(--efu-secondtext) !important
-  font-size .6rem
-  margin-left .5rem
+  font-size 0.6rem
+  margin-left 0.5rem
 
 .tk-comments-container
   > .tk-comment
     margin-top 0 !important
     margin-bottom 0.5rem !important
     background var(--efu-card-bg)
-    transition .3s
+    transition 0.3s
     border-radius 12px
     padding 0
     padding-top 0.5rem
     border none
     border-top var(--style-border-dashed)
+
+    &:hover
+      .tk-actions
+        opacity 1
+
+  .tk-submit
+    .tk-row
+      .tk-avatar
+        display none
+
+      .tk-cancel
+        right 5.5rem
+
+      .tk-meta-input
+        width calc(100% - 8.25rem)
+        left 0
 
 #page
   .tk-comments-container
@@ -246,15 +309,34 @@
       border-top var(--style-border)
       box-shadow var(--efu-shadow-border)
 
-@media screen and (max-width: 768px)
+@media screen and (max-width 768px)
   .tk-comments-container
     > .tk-comment
       padding 1rem
       border var(--style-border-always)
       box-shadow var(--efu-shadow-border)
 
+    .el-button--primary
+      height 33px
+      top -43px
+
+    .el-button--default
+      height 33px
+
+    .tk-cancel
+      right 0 !important
+      top -86px
+
+    .tk-preview
+      right 0
+      top -130px
+
+    .tk-meta-input
+      width calc(100% - 3rem) !important
+      left 0
+
   .tk-icon.__comments
-    left .5rem
+    left 0.5rem
 
 .tk-icon
   position absolute
@@ -270,7 +352,7 @@
     background var(--efu-card-bg)
     border-top var(--style-border-dashed)
     border-radius 12px
-    transition .3s
+    transition 0.3s
     padding 1rem 0 0
     margin-top 0
 
@@ -278,15 +360,12 @@
   p
     margin 0 !important
 
-  pre
-  code
-  kbd
-  samp
-    font-family ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
+  pre, code, kbd, samp
+    font-family ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace
 
   pre
     background var(--efu-secondbg)
-    padding .5rem
+    padding 0.5rem
     margin 0.5rem 0
     overflow auto
     border-radius 0.5em
@@ -297,7 +376,7 @@
 .tk-replies
   .tk-content
     span:first-child
-      font-size .5rem
+      font-size 0.5rem
       color var(--efu-secondtext)
 
 .tk-content
@@ -310,26 +389,28 @@
       border-radius 12px 0 0 12px
       user-select none
 
-@media screen and (max-width: 768px)
-  .tk-meta-input
-    .el-input
-      .el-input-group__prepend
-        padding 0 .3rem !important
-
+@media screen and (max-width 768px)
   .tk-meta-input
     display flex
     flex-direction column
     top 0
-    position inherit !important
+    width calc(100% - 3rem - 40px)
 
-  .tk-meta-input
+    // position inherit !important
     .el-input
       margin-left 0 !important
       width 100% !important
 
+      .el-input-group__prepend
+        padding 0 0.3rem !important
+
   .tk-icon
     position absolute
     right 0
+
+  .tk-row
+    .tk-avatar
+      bottom 98px
 
 img.tk-avatar-img
   height 32px !important
@@ -379,7 +460,7 @@ img.tk-avatar-img
   border var(--style-border-always) !important
   box-shadow none !important
 
-@media screen and (max-width: 768px)
+@media screen and (max-width 768px)
   .el-textarea__inner
     background var(--efu-card-bg) !important
 
@@ -393,17 +474,14 @@ img.tk-avatar-img
   box-shadow var(--efu-shadow-main)
 
 .el-button
-  background-color var(--efu-fontcolor) !important
-  border 0 solid var(--efu-main) !important
-  color var(--efu-background) !important
+  background-color var(--efu-theme-op-deep) !important
+  border 0 solid var(--efu-theme-op-deep) !important
+  color var(--efu-fontcolor) !important
   border-radius 8px !important
 
-.el-button:hover
-  background var(--efu-black) !important
-  color var(--efu-white) !important
-
-.el-button.tk-preview
-  display none !important
+  &:hover
+    background var(--efu-theme) !important
+    color var(--efu-fontcolor) !important
 
 button.el-button.tk-cancel.el-button--default.el-button--small
   background var(--efu-secondbg) !important
@@ -413,7 +491,7 @@ button.el-button.tk-cancel.el-button--default.el-button--small
 .OwO
   &.OwO-open
     .OwO-body
-      animation .3s ease .1s 1 normal both running donate_effcet
+      animation 0.3s ease 0.1s 1 normal both running donate_effcet
 
   .OwO-body
     z-index 102
@@ -425,6 +503,7 @@ button.el-button.tk-cancel.el-button--default.el-button--small
     backdrop-filter saturate(180%) blur(10px)
     -webkit-backdrop-filter blur(10px)
     transform translateZ(0)
+
     +maxWidth768()
       width 300px
 
@@ -434,33 +513,25 @@ button.el-button.tk-cancel.el-button--default.el-button--small
       .OwO-packages
         li
           margin-right 0 !important
+          line-height 45px !important
           height 48px
-          transition .3s
+          transition 0.3s
 
-        li:hover
-          transition .3s
+          &:hover
+            transition 0.3s
+
+        .OwO-package-active
+          background var(--efu-secondbg) !important
 
     .OwO-items
       .OwO-item:hover
         box-shadow var(--efu-shadow-lightblack) !important
         border-radius 8px
 
-.OwO-packages
-  background var(--efu-background)
-  padding-left 8px !important
-
-.OwO
-  .OwO-body
-    .OwO-bar
-      .OwO-packages
-        .OwO-package-active
-          background var(--efu-secondbg) !important
-
     .OwO-items-show
       margin 12px 8px !important
       min-height 197px
 
-    .OwO-bar
-      .OwO-packages
-        li
-          line-height 45px !important
+.OwO-packages
+  background var(--efu-background)
+  padding-left 8px !important

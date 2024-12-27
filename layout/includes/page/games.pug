@@ -1,0 +1,23 @@
+include ../widgets/page/banner
+#games
+    if site.data.games
+        each cls in site.data.games
+            .game-group
+                h2.game-group-title= cls.name
+                .game-group-desc= cls.desc
+                .game-group-content
+                    each item in cls.list
+                        .game-item
+                            .game-item-cover
+                                img.game-item-image(src=item.image, alt=item.name)
+                            .game-item-info
+                                .game-item-name(onclick='utils.copy("' + item.name + '")')= item.name
+                                if item.score
+                                    .game-item-score= "评分: " + item.score
+                                .game-item-spec= item.spec
+                                .game-item-desc= item.desc
+                                if item.link
+                                    .game-item-toolbar
+                                        a.game-item-link(href=item.link, target="_blank") 详情
+                                        a.bber-reply(onclick=`sco.toTalk('${item.name}\\n\\n${item.spec}\\n\\n${item.desc}')`)
+                                            i.solitude.fa-solid.fa-comment(style="font-size: 1rem;")
