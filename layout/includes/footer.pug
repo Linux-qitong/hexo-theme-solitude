@@ -66,7 +66,7 @@ div#footer-bar
             else
                 div.copyright © #{moment(theme.aside.siteinfo.runtime).year()} - #{new Date().getFullYear()} By&nbsp;
                     a.footer-bar-link(href=url_for("/"))
-                        img.author-avatar(src=url_for(theme.site.icon))
+                        img.author-avatar(src=url_for(theme.aside.card.author.img || theme.site.icon)) 
                         = config.author
             if theme.footer.beian
                 .beian-group
