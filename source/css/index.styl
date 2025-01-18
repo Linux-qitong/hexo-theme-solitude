@@ -3,9 +3,9 @@
 if hexo-config('css_prefix')
   @import 'nib'
 
-@import "third_party/snackbar.min.css"
+@import "_third_party/snackbar.min.css"
 // project
-@import "var.styl"
+@import "_var.styl"
 @import '_global/*'
 @import '_layout/*'
 @import '_page/index.styl'
@@ -31,7 +31,7 @@ if hexo-config('comment.use')
 
 // third party
 if hexo-config('tianli_talk.enable')
-  @import 'third_party/tianli_talk.styl'
+  @import '_third_party/tianli_talk.styl'
 
 // components
 @import '_components/index'

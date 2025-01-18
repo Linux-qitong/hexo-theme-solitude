@@ -570,6 +570,8 @@ footer:
 
   # 页脚信息文字
   links:
+    - name: Theme
+      url: https://github.com/everfu/hexo-theme-solitude
     # - name: RSS
     #   url: /atom.xml
     # - name: License
