@@ -65,16 +65,16 @@ div#footer-bar
                         each item in beian
                             a.footer-bar-link(href=url_for(item.url), title=item.name)
                                 if item.icon 
-                                img.beian-icon(src=url_for(item.icon), alt=item.name)
-                            span.beian-name= item.name
+                                    img.beian-icon(src=url_for(item.icon), alt=item.name)
+                                span.beian-name= item.name
               
         if theme.footer.links
             div.footer-bar-right
                 each item in theme.footer.links
                     if item.icon
                         a.footer-bar-link(href=url_for(item.url), alt=item.name)
-                                each icon in item.icon
-                                    i.solitude(class=icon)
+                            each icon in item.icon
+                                i.solitude(class=icon)
                     else if item.img
                         a.footer-bar-link(href=url_for(item.url), alt=item.name)
                             img(src=url_for(item.img), alt=item.name)
