@@ -18,8 +18,7 @@ if site.data.about.rewardList && site.data.about.award.enable
                                 if reward.icon
                                     i.solitude(class=reward.icon)
                                 | ¥ #{reward.money}
-                            time.datetime.reward-list-item-time(datetime=moment(reward.time).format('YYYY-MM-DD'))
-                                | #{moment(reward.time).format('YYYY-MM-DD')}
+                            time.datetime.reward-list-item-time(datetime=moment(reward.time).format())
                 if theme.post.award.enable
                     .post-reward
                         .post-reward(onclick="AddRewardMask()")
