@@ -18,7 +18,6 @@ if site.data.about.rewardList && site.data.about.award.enable
                                 if reward.icon
                                     i.solitude(class=reward.icon)
                                 | ¥ #{reward.money}
-                            // Format the reward time to display only the date
                             time.datetime.reward-list-item-time(datetime=moment(reward.time).format('YYYY-MM-DD'))
                                 | #{moment(reward.time).format('YYYY-MM-DD')}
                 if theme.post.award.enable
