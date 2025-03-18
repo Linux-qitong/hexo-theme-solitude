@@ -25,6 +25,25 @@ script().
                 path: window.location.pathname,
                 onCommentLoaded: () => {
                     GLOBAL_CONFIG.lightbox && utils.lightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+                    const processLinks = () => {
+                        const container = document.querySelector('#twikoo .tk-comments-container');
+                        if (!container) return;
+
+                        const links = container.querySelectorAll('a');
+                        links.forEach((link) => {
+                            const href = link.getAttribute('href');
+                            if (!href) return;
+
+                            if (!href.startsWith(window.location.origin) && !link.hasAttribute('data-fancybox')) {
+                                const encodedHref = btoa(href);
+                                const newHref = `/go.html?u=${encodedHref}`;
+                                link.setAttribute('href', newHref);
+                                link.setAttribute('rel', 'external nofollow noopener noreferrer');
+                                link.setAttribute('target', '_blank');
+                            }
+                        });
+                    };
+                    processLinks();
                 }
             }, !{JSON.stringify(option)}))
 
