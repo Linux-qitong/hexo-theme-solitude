@@ -1,6 +1,3 @@
-framework_by: 框架：
-theme_by: 主題：
-
 more: 更多
 star: 喜歡這篇的人也看了
 random: 隨便逛逛
@@ -67,7 +64,7 @@ post:
   minread: 閱讀耗時
   ip: 作者IP歸屬地為
   pv: 文章熱度
-  min: 分
+  min: 分鍾
   comment: 評論數
   copyright:
     reprint: 本文是轉載或翻譯文章，版權歸原作者所有。轉載本文請聯繫原作者。
