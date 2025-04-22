@@ -385,6 +385,7 @@ hexo.extend.filter.register(
           enable: false,
           translate: false,
           mode: false,
+          background_image: false
         },
       },
       CDN: {
