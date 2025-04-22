@@ -519,6 +519,7 @@ rightside:
     translate: false
     mode: false
     aside: false
+    background_image: false
 # --------------------------- start ---------------------------
 
 # --------------------------- start ---------------------------
