@@ -256,6 +256,15 @@ const sco = {
     utils.saveToLocal.set("commentBarrageSwitch", !isDisplayed, 0.2);
     rm?.menuItems.barrage && rm.barrage(isDisplayed);
   },
+
+   switchHideBgImg() {
+     const globalBg = document.getElementById('global_bg');
+     if (globalBg.style.backgroundImage === 'none') {
+       globalBg.style.backgroundImage = '';
+     } else {
+       globalBg.style.backgroundImage = 'none';
+     }
+   },
   switchHideAside() {
     const htmlClassList = document.documentElement.classList;
     const consoleHideAside = document.querySelector("#consoleHideAside");
