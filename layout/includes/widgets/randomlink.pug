@@ -10,8 +10,8 @@ if(data)
 
 script.
     const links = !{JSON.stringify(datalinks)}
-    const randomText = '!{_p('link.random')}'
-    const travelLinks = links.filter((i) => !('noTravel' in i && i.noTravel)) 
+    const travelLinks = links.filter((i) => !('noTravel' in i && i.noTravel))
+    const randomText = '!{_p('link.random')}' 
     function travelling() {
         const link = travelLinks[utils.randomNum(travelLinks.length)]; 
         Snackbar.show({
