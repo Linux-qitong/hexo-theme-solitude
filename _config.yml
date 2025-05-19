@@ -21,7 +21,7 @@ site:
   name:
     class: text # text / i_class / img
     custom: Solitude # Solitude / fas fa-ghost / /img/pwa/favicon.ico
-  icon: /img/pwa/favicon.png # Site icon / 网站图标
+  icon: /img/pwa/favicon.webp # Site icon / 网站图标
 # --------------------------- end ---------------------------
 
 # --------------------------- start ---------------------------
@@ -101,7 +101,7 @@ hometop:
     sup: 置顶
     title: Solitude 官方文档
     url: https://solitude.js.org/
-    img: /img/default.avif
+    img: /img/default.webp
     color: "none"
 
 # Article Top Banner
@@ -245,7 +245,7 @@ post:
     # 版权
     copyright:
       enable: true
-      author: /img/logo.png # url
+      author: /img/logo.webp # url
       # License
       # 许可证
       license: CC BY-NC-SA 4.0
@@ -257,6 +257,7 @@ post:
   ai:
     enable: false
     modelName: 小七 GPT
+    loading: 正在加载中··· 
   # Article meta information
   # 文章元信息
   meta:
@@ -519,6 +520,7 @@ rightside:
     translate: false
     mode: false
     aside: false
+    background_image: false
 # --------------------------- start ---------------------------
 
 # --------------------------- start ---------------------------
@@ -546,7 +548,9 @@ footer:
     #   Copyright: /copyright/
 
   # 随机友链
-  randomlink: false # 随机友链
+  randomlink:
+    enable: false
+    num: 3
 
   # 备案
   beian:
@@ -576,7 +580,7 @@ footer:
 # 404 page
 # 404 页面
 errorpage:
-  img: /img/404.avif
+  img: /img/404.webp
   text: =awa= Page Not Found # Text
   recommendList: true
 # --------------------------- end ---------------------------
@@ -636,7 +640,7 @@ lazyload:
   # 加载时替换图
   placeholder: ""
   # 加载失败替换图
-  errorimg: /img/error_load.avif
+  errorimg: /img/error_load.webp
 # --------------------------- end ---------------------------
 
 # --------------------------- start ---------------------------
@@ -648,7 +652,7 @@ loading:
   fullpage: false
   # Loading icon, default is siteicon
   # 加载图标，不写默认siteicon
-  favicon: /img/favicon.png
+  favicon: /img/favicon.webp
   # Pace loading
   # Pace 加载
   pace: true

@@ -1,19 +1,9 @@
-const coverColor = (music = false) => {
-    if (music) {
-        var coverPath = document.querySelector("#nav-music .aplayer-pic").style.backgroundImage;
-        const coverPathMatch = /url\("([^"]+)"\)/.exec(coverPath);
-        coverPath = coverPathMatch ? coverPathMatch[1] : '';
-        if (coverPath) {
-            localColor(coverPath,music);
-        }
-    }
-    else {
-        const pageColor = PAGE_CONFIG.color || document.getElementById("post-cover")?.src;
-        if (pageColor) {
-            localColor(pageColor);
-        } else {
-            setDefaultThemeColors();
-        }
+const coverColor = () => {
+    const pageColor = PAGE_CONFIG.color || document.getElementById("post-cover")?.src;
+    if (pageColor) {
+        localColor(pageColor);
+    } else {
+        setDefaultThemeColors();
     }
 }
 
@@ -30,18 +20,13 @@ const setDefaultThemeColors = () => {
     initThemeColor();
 }
 
-const localColor = (path, music = false) => {
+const localColor = (path) => {
     const colorThief = new ColorThief();
     const img = new Image();
     img.crossOrigin = "Anonymous";
     img.onload = () => {
         const color = colorThief.getColor(img);
-        if(music) {
-            setMusicColor(rgbToHex(color));
-        }
-        else{
-            setThemeColors(rgbToHex(color), ...color);
-        }
+        setThemeColors(rgbToHex(color), ...color);
     };
     img.onerror = () => console.error('Image Error');
     img.src = path;
@@ -50,13 +35,6 @@ const localColor = (path, music = false) => {
 const rgbToHex = ([r, g, b]) => {
     return '#' + [r, g, b].map(x => Math.floor(x * 0.8).toString(16).padStart(2, '0')).join('');
 }
-
-const setMusicColor = (value) => {
-    if (!value) return setDefaultThemeColors();
-    const item = document.querySelector("#nav-music")
-    item.style.setProperty('--efu-music', value);
-}
-
 
 const setThemeColors = (value, r = null, g = null, b = null) => {
     if (!value) return setDefaultThemeColors();

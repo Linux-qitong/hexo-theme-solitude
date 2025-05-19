@@ -39,7 +39,7 @@ if group
                     each url, y in value
                         a.footer-item(href=url_for(url), title=y)= y
 
-        if theme.footer && theme.footer.randomlink
+        if theme.footer && theme.footer.randomlink.enable
             div.footer-group
                 div.footer-title-group
                     h3.footer-title= _p('footer.randomlink')
@@ -52,24 +52,12 @@ div#footer-bar
             if moment(theme.aside.siteinfo.runtime).year() === new Date().getFullYear()
                 div.copyright © #{moment(theme.aside.siteinfo.runtime).year()} By&nbsp;
                     a.footer-bar-link(href=url_for("/"))
-                        img.author-avatar(src=url_for(theme.site.icon))
+                        img.author-avatar(src=url_for(theme.aside.my_card.author.img || theme.site.icon))
                         = config.author
-                .beian-group
-                    if theme.footer.beian
-                        - var beian = theme.footer.beian || []
-                        each item in beian
-                            a.footer-bar-link(href=url_for(item.url), title=item.name)
-                                if item.icon 
-                                    img.beian-icon(src=url_for(item.icon), alt=item.name)
-                                span.beian-name= item.name
-                    a.footer-bar-link(href=_p('hexo'))
-                        = _p('framework_by') + 'Hexo'
-                    a.footer-bar-link(href=_p('repo'))
-                        = _p('theme_by') + 'Solitude'
             else
                 div.copyright © #{moment(theme.aside.siteinfo.runtime).year()} - #{new Date().getFullYear()} By&nbsp;
                     a.footer-bar-link(href=url_for("/"))
-                        img.author-avatar(src=url_for(theme.site.icon))
+                        img.author-avatar(src=url_for(theme.aside.my_card.author.img || theme.site.icon))
                         = config.author
                 .beian-group
                     if theme.footer.beian
@@ -79,17 +67,14 @@ div#footer-bar
                                 if item.icon 
                                     img.beian-icon(src=url_for(item.icon), alt=item.name)
                                 span.beian-name= item.name
-                    a.footer-bar-link(href=_p('hexo'))
-                        = _p('framework_by') + 'Hexo'
-                    a.footer-bar-link(href=_p('repo'))
-                        = _p('theme_by') + 'Solitude'
+              
         if theme.footer.links
             div.footer-bar-right
                 each item in theme.footer.links
                     if item.icon
                         a.footer-bar-link(href=url_for(item.url), alt=item.name)
-                                each icon in item.icon
-                                    i.solitude(class=icon)
+                            each icon in item.icon
+                                i.solitude(class=icon)
                     else if item.img
                         a.footer-bar-link(href=url_for(item.url), alt=item.name)
                             img(src=url_for(item.img), alt=item.name)

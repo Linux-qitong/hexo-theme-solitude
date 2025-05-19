@@ -1,6 +1,3 @@
-framework_by: 框架：
-theme_by: 主题：
-
 more: 更多
 star: 喜欢这篇的人也看了
 random: 随便逛逛
@@ -251,3 +248,4 @@ rightside:
     translate: 简繁转换
     mode: 显示模式切换
     aside: 侧边栏
+    bg_img: 背景图片显示

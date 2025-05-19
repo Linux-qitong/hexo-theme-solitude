@@ -1,11 +1,12 @@
 class AIPostRenderer {
-  static ANIMATION_DELAY_MS = 30;
+  static ANIMATION_DELAY_MS = 40;
   static AI_EXPLANATION_SELECTOR = ".ai-explanation";
   static AI_TAG_SELECTOR = ".ai-tag";
 
   constructor() {
     this.startTextAnimation = this.startTextAnimation.bind(this);
     this.animationFrame = null;
+    this.isDeleting = false;
   }
 
   init() {
@@ -18,25 +19,24 @@ class AIPostRenderer {
 
   initialize() {
     this.cacheElements();
-    this.validateContent() && this.renderAIContent();
+    if (this.validateContent()) {
+      this.renderAIContent();
+    }
   }
 
   cacheElements() {
     this.refs = new WeakMap();
     this.refs.set(document, {
-      explanationElement: document.querySelector(
-        AIPostRenderer.AI_EXPLANATION_SELECTOR
-      ),
-      tagElement: document.querySelector(AIPostRenderer.AI_TAG_SELECTOR),
+      explanationElement: document.querySelector(AIPostRenderer.AI_EXPLANATION_SELECTOR),
+      tagElement: document.querySelector(AIPostRenderer.AI_TAG_SELECTOR)
     });
-
     const { explanationElement, tagElement } = this.refs.get(document) || {};
     this.explanationElement = explanationElement;
     this.tagElement = tagElement;
   }
 
   validateContent() {
-    return !!(
+    return (
       this.explanationElement &&
       this.tagElement &&
       this.aiContent.length &&
@@ -46,55 +46,56 @@ class AIPostRenderer {
 
   renderAIContent() {
     this.prepareAnimation();
-    this.animationFrame = requestAnimationFrame(() =>
-      this.startTextAnimation(0)
-    );
+    setTimeout(() => {
+      this.explanationElement.style.display = "block";
+      this.explanationElement.classList.add("fast-blink");
+      this.animationFrame = requestAnimationFrame(() =>
+        this.startTextAnimation(0)
+      );
+    }, 3000);
   }
 
   prepareAnimation() {
     this.isAnimating = true;
+    this.isDeleting = true;
     this.tagElement.classList.add("loadingAI");
-    this.explanationElement.textContent = "";
   }
 
   startTextAnimation(index) {
-    if (index >= this.aiContent.length) {
-      this.completeAnimation();
-      return;
-    }
-
-    this.appendCharacter(this.aiContent[index]);
-    this.animationFrame = requestAnimationFrame(() =>
-      this.startTextAnimation(index + 1)
-    );
-  }
-
-  appendCharacter(char) {
-    if (!this.fragment) this.fragment = document.createDocumentFragment();
-
-    const charElement = document.createElement("span");
-    charElement.className = "char";
-    charElement.textContent = char;
-    this.fragment.appendChild(charElement);
-
-    if (this.fragment.childNodes.length % 1 === 0) {
-      this.explanationElement.appendChild(this.fragment);
-      this.fragment = null;
+    if (this.isDeleting) {
+      const currentText = this.explanationElement.textContent;
+      if (currentText.length > 0) {
+        this.explanationElement.textContent = currentText.slice(0, -1);
+        setTimeout(() => {
+          this.animationFrame = requestAnimationFrame(() =>
+            this.startTextAnimation(index)
+          );
+        }, AIPostRenderer.ANIMATION_DELAY_MS);
+      } else {
+        this.isDeleting = false;
+        this.startTextAnimation(0);
+      }
+    } else {
+      if (index >= this.aiContent.length) {
+        this.completeAnimation();
+      } else {
+        this.explanationElement.textContent += this.aiContent[index];
+        setTimeout(() => {
+          this.animationFrame = requestAnimationFrame(() =>
+            this.startTextAnimation(index + 1)
+          );
+        }, AIPostRenderer.ANIMATION_DELAY_MS);
+      }
     }
   }
 
   completeAnimation() {
-    if (this.fragment) {
-      this.explanationElement.appendChild(this.fragment);
-      this.fragment = null;
-    }
-
     cancelAnimationFrame(this.animationFrame);
     this.isAnimating = false;
     this.tagElement.classList.remove("loadingAI");
-
+    this.explanationElement.classList.remove("fast-blink");
     const event = new CustomEvent("aiRenderComplete", {
-      detail: { element: this.explanationElement },
+      detail: { element: this.explanationElement }
     });
     document.dispatchEvent(event);
   }

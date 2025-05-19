@@ -1,8 +1,3 @@
-repo: https://github.com/everfu/hexo-theme-solitude
-hexo: https://hexo.io/
-framework_by: 框架：
-theme_by: 主题：
-
 more: 更多
 star: 喜欢这篇的人也看了
 random: 随便逛逛
@@ -69,8 +64,8 @@ post:
   minread: 阅读耗时
   ip: 作者IP归属地为
   pv: 文章热度
-  comment: 评论数
   min: 分钟
+  comment: 评论数
   copyright:
     reprint: 本文是转载或翻译文章，版权归原作者所有。转载本文请联系原作者。
     original: 本文是原创文章，采用
@@ -253,3 +248,4 @@ rightside:
     translate: 简繁转换
     mode: 显示模式切换
     aside: 侧边栏
+    bg_img: 背景图片显示

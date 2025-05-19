@@ -199,47 +199,48 @@ const sco = {
       window.scroll({ top: targetPosition, behavior: "smooth" });
     }
   },
-  musicBind() {
-    const $music = document.querySelector("#nav-music meting-js");
-    if ($music && $music.aplayer) { 
-      this.isMusicBind = true;
-      $music.onclick = () => this.musicPlaying && this.musicToggle(false);
-      $music.aplayer.on('loadeddata', () =>{
-        coverColor(true);
-      })
-    }
-  },
   musicToggle(isMeting = true) {
-    if (!this.isMusicBind) this.musicBind();
-    
+    if (!this.isMusicBind) {
+      this.musicBind();
+    }
     const $music = document.querySelector("#nav-music");
     const $meting = document.querySelector("meting-js");
     const $console = document.getElementById("consoleMusic");
-    
+    const $rmText = document.querySelector("#menu-music-toggle span");
+    const $rmIcon = document.querySelector("#menu-music-toggle i");
+
     this.musicPlaying = !this.musicPlaying;
-    
     $music.classList.toggle("playing", this.musicPlaying);
     $music.classList.toggle("stretch", this.musicPlaying);
     $console?.classList.toggle("on", this.musicPlaying);
-    
+
     if (typeof rm !== "undefined" && rm?.menuItems.music[0]) {
-      const $rmText = document.querySelector("#menu-music-toggle span");
-      const $rmIcon = document.querySelector("#menu-music-toggle i");
-      $rmText.textContent = this.musicPlaying 
+      $rmText.textContent = this.musicPlaying
         ? GLOBAL_CONFIG.right_menu.music.stop
         : GLOBAL_CONFIG.right_menu.music.start;
-      $rmIcon.className = `solitude fas ${this.musicPlaying ? 'fa-pause' : 'fa-play'}`;
+      $rmIcon.className = this.musicPlaying
+        ? "solitude fas fa-pause"
+        : "solitude fas fa-play";
     }
 
-    if (isMeting && $meting) {
+    if (isMeting) {
       this.musicPlaying ? $meting.aplayer.play() : $meting.aplayer.pause();
     }
   },
-  musicSkipBack() {
-    document.querySelector("meting-js")?.aplayer?.skipBack();
-  },
-  musicSkipForward() {
-    document.querySelector("meting-js")?.aplayer?.skipForward();
+  musicBind() {
+    const $music = document.querySelector("#nav-music");
+    const $name = document.querySelector("#nav-music .aplayer-music");
+    const $button = document.querySelector("#nav-music .aplayer-button");
+
+    $name?.addEventListener("click", () => {
+      $music.classList.toggle("stretch");
+    });
+
+    $button?.addEventListener("click", () => {
+      this.musicToggle(false);
+    });
+
+    this.isMusicBind = true;
   },
   switchCommentBarrage() {
     const commentBarrageElement = document.querySelector(".comment-barrage");
@@ -290,6 +291,14 @@ const sco = {
     greetingElement.textContent = randomGreeting;
     this.lastWittyWord = randomGreeting;
   },
+  switchHideBgImg() {
+     const globalBg = document.getElementById('global_bg');
+     if (globalBg.style.backgroundImage === 'none') {
+       globalBg.style.backgroundImage = '';
+     } else {
+       globalBg.style.backgroundImage = 'none';
+     }
+   },
   switchDarkMode() {
     const isDarkMode =
       document.documentElement.getAttribute("data-theme") === "dark";
@@ -869,6 +878,10 @@ const scrollFnToDo = () => {
   if (toc) {
     const $cardTocLayout = document.getElementById("card-toc");
     const $cardToc = $cardTocLayout.querySelector(".toc-content");
+    const $tocLink = $cardToc.querySelectorAll(".toc-link");
+    const $tocPercentage = $cardTocLayout.querySelector(".toc-percentage");
+    const isExpand = $cardToc.classList.contains("is-expand");
+
     const tocItemClickFn = (e) => {
       const target = e.target.closest(".toc-link");
       if (!target) return;
@@ -910,7 +923,6 @@ window.refreshFn = () => {
     sco.tagPageActive,
     sco.categoriesBarActive,
     sco.listenToPageInputPress,
-    sco.musicBind,
     sco.addNavBackgroundInit,
     sco.refreshWaterFall,
   ].forEach((fn) => fn());

@@ -3,13 +3,17 @@
 if(data)
     each item in data
             each y in item.link_list
-                - datalinks.push({ name: y.name,link: y.link})
+                if y.noTravel
+                    - datalinks.push({ name: y.name, link: y.link, noTravel: y.noTravel}) 
+                else
+                    - datalinks.push({ name: y.name, link: y.link}) 
 
 script.
     const links = !{JSON.stringify(datalinks)}
     const randomText = '!{_p('link.random')}'
+    const travelLinks = links.filter((i) => !('noTravel' in i && i.noTravel)) 
     function travelling() {
-        const link = links[utils.randomNum(links.length)];
+        const link = travelLinks[utils.randomNum(travelLinks.length)]; 
         Snackbar.show({
             text: randomText.replace(/\$\{name}/,link.name),
             duration: 8000,
@@ -22,7 +26,7 @@ script.
         });
     }
 
-if theme.footer.randomlink
+if theme.footer.randomlink.enable
     script.
         function randomLinksList() {
             const linkcard = document.getElementById('friend-links-in-footer');
@@ -30,7 +34,7 @@ if theme.footer.randomlink
 
             let data = '';
             let linksCopy = [...links];
-            let count = Math.min(3, linksCopy.length);
+            let count = Math.min(!{theme.footer.randomlink.num}, linksCopy.length);
 
             for (let i = 0; i < count; i++) {
                 let index = utils.randomNum(linksCopy.length);
@@ -39,5 +43,5 @@ if theme.footer.randomlink
                 linksCopy.splice(index, 1);
             }
 
-            linkcard.innerHTML = data + '<a class="footer-item" href="#{url_for(/links/)}">#{_p('more')}</a>';
+            linkcard.innerHTML = data + '<a class="footer-item" href="#{url_for(/friends/)}">#{_p('more')}</a>';
         }

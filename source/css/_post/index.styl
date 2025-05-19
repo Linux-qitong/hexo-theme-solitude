@@ -90,6 +90,25 @@ if hexo-config('post.ai.enable')
       display none
       text-align left
 
+      &:after
+        content ''
+        display inline-block
+        width 10px
+        height 3px
+        margin-left 2px
+        background var(--efu-lighttext)
+        vertical-align bottom
+        animation blink-underline 1s ease-in-out infinite
+        transition all .3s
+        position relative
+        bottom 3px
+
+        @keyframes blink-underline
+          0%, 100%
+            opacity 1
+          50%
+            opacity 0
+
       .blinking-cursor
         background-color var(--efu-lighttext)
         width 14px
@@ -114,7 +133,16 @@ if hexo-config('post.ai.enable')
     100% 
         opacity 1
         transform translateY(0)
-    
+  
+  @keyframes blink-underline-fast
+    0%, 100%
+      opacity 1
+    50%
+      opacity 0
+
+  .ai-explanation.fast-blink:after
+    animation blink-underline-fast 0.4s ease-in-out infinite
+
 #post
   border var(--style-border)
   border-radius var(--radius)

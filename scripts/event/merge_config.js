@@ -153,7 +153,10 @@ hexo.extend.filter.register(
           right: null,
         },
         group: null,
-        randomlink: false,
+        randomlink: {
+          enable: false,
+          num: 3,
+        },
         privacy: null,
         license: null,
         links: null,
@@ -385,6 +388,7 @@ hexo.extend.filter.register(
           enable: false,
           translate: false,
           mode: false,
+          background_image: false
         },
       },
       CDN: {

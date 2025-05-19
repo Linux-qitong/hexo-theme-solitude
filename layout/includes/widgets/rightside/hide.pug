@@ -1,4 +1,7 @@
 .rs_hide
+    if theme.rightside.hide.background_image
+        button.aside(type='button' title=_p('rightside.hide.bg_img') onclick='sco.switchHideBgImg()')
+            i.fas.fa-image
     if theme.rightside.hide.translate
         button.translate(type='button' title=_p('rightside.hide.translate'))= '简'
     if theme.rightside.hide.mode 
